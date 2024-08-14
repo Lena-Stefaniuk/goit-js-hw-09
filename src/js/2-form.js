@@ -31,12 +31,15 @@ const onFormFieldInput = event => {
 
 const onFeedbackFormSubmit = event => {
   event.preventDefault();
-  event.target.reset();
-  localStorage.removeItem('feedback-form-state');
   if (!formData.email || !formData.message) {
     alert('Fill please all fields');
+    return;
   }
-};
 
+  console.log(formData);
+  event.target.reset();
+  localStorage.removeItem('feedback-form-state');
+  formData = { email: '', message: '' };
+};
 feedbackFormEl.addEventListener('input', onFormFieldInput);
 feedbackFormEl.addEventListener('submit', onFeedbackFormSubmit);
